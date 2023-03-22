@@ -4,8 +4,6 @@
 \usepackage{styles/main}
 \usepackage{styles/custom}
 
-% \geometry{top=20mm,bottom=20mm}
-
 \title{}
 \confidential{\textbf{}}
 
@@ -14,21 +12,17 @@
 \date{}
 
 \begin{document}
-\maketitle
+\input{styles/science.tex}
 
-\IncludeHistoryTimeline
-
-\tableofcontents
-% \listoffigures
+\maketitletoc
 \clearpage
 
-\settocdepth{subsection}
+% This line can be safely removed, it is only used
+% to test the correct execution of template functions
+\input{tests/__init__.tex}
 
-% \clearpage
-% 
-% \nocite{*}
-% \printbibliography
+\vfill
 
-\IncludeHistoryTable
+\IncludeHistoryTimeline
 
 \end{document}
