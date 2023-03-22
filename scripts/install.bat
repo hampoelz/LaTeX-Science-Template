@@ -8,7 +8,7 @@
 
 @echo off
 
-set "gh_repo=hampoelz/HTL_Labor-Template"
+set "gh_repo=hampoelz/LaTeX-Science-Template"
 set "remote_branch=main"
 
 set "cwd_setup=%temp%\LatexSetup"
@@ -234,7 +234,7 @@ exit
         set "installed_exts=!installed_exts! %%i"
     )
 
-    echo %installed_exts% | findstr "James-Yu.latex-workshop" | findstr "tecosaur.latex-utilities" | findstr "eamodio.gitlens" | findstr "streetsidesoftware.code-spell-checker" | findstr "streetsidesoftware.code-spell-checker-german" >nul 2>&1 || (
+    echo %installed_exts% | findstr "James-Yu.latex-workshop" | findstr "tecosaur.latex-utilities" | findstr "eamodio.gitlens" | findstr "streetsidesoftware.code-spell-checker" >nul 2>&1 || (
         echo.
         echo ========================================================
         echo    Install required and recommended VSCode extensions
@@ -245,7 +245,6 @@ exit
         call %cmd_vscode% --install-extension tecosaur.latex-utilities
         call %cmd_vscode% --install-extension eamodio.gitlens
         call %cmd_vscode% --install-extension streetsidesoftware.code-spell-checker
-        call %cmd_vscode% --install-extension streetsidesoftware.code-spell-checker-german
     )
 
     endlocal

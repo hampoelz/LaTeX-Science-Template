@@ -1,6 +1,6 @@
-\section{Spannungsstabilisierung}
+\section{Voltage Stabilization}
 
-\subsection{Einführung}
+\subsection{Introduction}
 
 \begin{sagesilent}
     U_e0 = 10
@@ -12,11 +12,11 @@
     U_BE = 0.66
 \end{sagesilent}
 
-Angaben: $U_{e0} = \var{U_e0}V$, $I_{a_{max}} = \var{I_a_max}A$, $I_{ZD} = \var{I_ZD}A$
+Informations: $U_{e0} = \var{U_e0}V$, $I_{a_{max}} = \var{I_a_max}A$, $I_{ZD} = \var{I_ZD}A$
 
-Datenblatt: $U_{ZD} = \var{U_ZD}V$, $U_{ZD_{max}} = \var{U_ZD_max}V$, $U_{BE} = \var{U_BE}V$
+Datasheet: $U_{ZD} = \var{U_ZD}V$, $U_{ZD_{max}} = \var{U_ZD_max}V$, $U_{BE} = \var{U_BE}V$
 
-\subsection{Schaltung}
+\subsection{Circuit}
 
 \begin{figure}[H]
     \centering
@@ -51,7 +51,7 @@ Datenblatt: $U_{ZD} = \var{U_ZD}V$, $U_{ZD_{max}} = \var{U_ZD_max}V$, $U_{BE} = 
     \end{circuitikz}
 \end{figure}
 
-\subsection{Berechnungen}
+\subsection{Calculations}
 
 \begin{sagesilent}
     R_V = (U_e0 - U_ZD) / I_ZD
@@ -59,7 +59,7 @@ Datenblatt: $U_{ZD} = \var{U_ZD}V$, $U_{ZD_{max}} = \var{U_ZD_max}V$, $U_{BE} = 
 \end{sagesilent}
 
 \begin{equation*}
-    R_{V} = \frac{U_{e0} - U_{ZD}}{I_{ZD} + I_{B}} \tag*{$I_{B} = \quad \ll$ \quad \textit{(vernachlässigbar)}}
+    R_{V} = \frac{U_{e0} - U_{ZD}}{I_{ZD} + I_{B}} \tag*{$I_{B} = \quad \ll$ \quad \textit{(negligible)}}
 \end{equation*}
 
 \begin{align*}
@@ -79,7 +79,7 @@ Datenblatt: $U_{ZD} = \var{U_ZD}V$, $U_{ZD_{max}} = \var{U_ZD_max}V$, $U_{BE} = 
 \begin{figure}[H]
     \centering
     \includesvg[width=0.8\textwidth]{tests/simulations/export/test_measures.svg}
-    \caption{Ausgangskennlinie \textbf{$U_{a} = f(R_L)$} der Simulation \textit{(als svg eingebunden)}}
+    \caption{Output characteristic \textbf{$U_{a} = f(R_L)$} of the simulation \textit{(embedded as svg)}}
 \end{figure}
 
 \begin{sagesilent}
@@ -101,10 +101,10 @@ Datenblatt: $U_{ZD} = \var{U_ZD}V$, $U_{ZD_{max}} = \var{U_ZD_max}V$, $U_{BE} = 
 \begin{figure}[H]
     \centering
     \sageplot{simulation_plot}
-    \caption{Ausgangskennlinie \textbf{$U_{a} = f(R_L)$} der Simulation \textit{(importiert von ltspice)}}
+    \caption{Output characteristic \textbf{$U_{a} = f(R_L)$} of the simulation \textit{(imported from ltspice)}}
 \end{figure}
 
-\subsection{Auswertung}
+\subsection{Analysis}
 
 \begin{sagesilent}
     measures = Measures(
@@ -137,14 +137,14 @@ Datenblatt: $U_{ZD} = \var{U_ZD}V$, $U_{ZD_{max}} = \var{U_ZD_max}V$, $U_{BE} = 
     index_Ia = 2
 \end{sagesilent}
 
-\subsubsection{Messwerte}
+\subsubsection{Measured Data}
 
 \begin{center}
     \renewcommand{\arraystretch}{1.2}
     \sage{measures.table}
 \end{center}
 
-\subsubsection{Grafische Darstellung}
+\subsubsection{Plotting}
 
 \begin{sagesilent}
     f = list_plot(
@@ -177,26 +177,5 @@ Datenblatt: $U_{ZD} = \var{U_ZD}V$, $U_{ZD_{max}} = \var{U_ZD_max}V$, $U_{BE} = 
 \begin{figure}[H]
     \centering
     \sageplot{f}
-    \caption{Ausgangskennlinie \textbf{$U_{a} = f(R_L)$} mit gemessene Werte}
+    \caption{Output characteristic \textbf{$U_{a} = f(R_L)$} with measured values}
 \end{figure}
-
-\subsection{Verwendete Geräte}
-
-\medskip
-
-\begin{devicelist}
-    \devicecat{Widerstands-Dekade}{2}{
-        \device{ET-LAB-RDXX}{R_{V}}
-        \device{ET-LAB-RDXX}{R_{L}}
-    }
-    \devicecat{Multimeter}{2}{
-        \device{ET-LAB-DMXX}{I_{a}}
-        \device{ET-LAB-DMXX}{U_{a}}
-    }
-    \devicecat{Z-Diode}{1}{
-        \device{BZD23-C5V1}{ZD}
-    }
-    \devicecat{Transistor}{1}{
-        \device{BC546C}{T}
-    }
-\end{devicelist}
