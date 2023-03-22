@@ -8,7 +8,7 @@
 
 @echo off
 
-set "gh_repo=hampoelz/LaTeX-Template"
+set "gh_repo=hampoelz/LaTeX-Science-Template"
 set "remote_branch=main"
 
 set "cwd_setup=%temp%\LatexSetup"
