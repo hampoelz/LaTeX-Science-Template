@@ -25,7 +25,7 @@ jobs:
     - name: Install tools and dependencies
       run: |
         apt-get update -y
-        apt-get install -y wget git jq inkscape ghostscript imagemagick perl ruby pandoc ffmpeg
+        apt-get install -y wget curl git jq inkscape ghostscript imagemagick perl ruby pandoc ffmpeg
     - name: Install full TeXLive scheme
       run: |
         mkdir install-tl && cd install-tl
