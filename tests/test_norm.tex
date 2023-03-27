@@ -1,9 +1,9 @@
 \begin{sagesilent}
     def compare(num, num_expected, options=None):
-        num_result = str(norm(num, options))
+        num_result = str(format_object(num, options))
         num_result_strip = " ".join(num_result.split())
         if num_result_strip != num_expected:
-            raise SystemExit('Error: norm() unit test failed!')
+            raise SystemExit('Error: format_object() unit test failed!')
         return "ok"
 \end{sagesilent}
 

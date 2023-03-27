@@ -5,7 +5,7 @@ from sage.structure.element import is_Vector, is_Matrix
 from sage.libs.pari.convert_sage import gen_to_sage
 
 
-def norm(x, n=None):
+def format_object(x, n=None):
     # convert input to sage object
     if not type(x).__module__.startswith('sage'):
         x = gen_to_sage(pari(f'{x}'))
@@ -24,7 +24,7 @@ def norm(x, n=None):
         return x
 
     # calculate digits of a number to the right and left of the decimal point
-    def numerical_approx_length(x):
+    def get_lengths(x):
         value = general_format(x)
         value = value.replace('-', '') # remove minus sign to get correct length of number
         if 'e' in value:
@@ -40,41 +40,41 @@ def norm(x, n=None):
         return length
 
     # calculate digits of a complex number or a number
-    def approx_length(x):
+    def get_digits(x):
         if hasattr(x, 'real') and hasattr(x, 'imag') and x.imag():
             # The real and imaginary parts of a complex number have the same number of decimal places,
             # so that no decimals are truncated later, the part with the most digits is used
-            len_real = numerical_approx_length(x.real())
-            len_imag = numerical_approx_length(x.imag())
+            len_real = get_lengths(x.real())
+            len_imag = get_lengths(x.imag())
             return max(len_real[0], len_imag[0]) + max(len_real[1], len_imag[1])
-        return sum(numerical_approx_length(x))
+        return sum(get_lengths(x))
 
     # format a number for better readability
-    def approx(x, length=None):
-        if not length:
-            length = approx_length(x)
+    def format_number(x, digits=None):
+        if not digits:
+            digits = get_digits(x)
 
         # handle complex numbers
         if hasattr(x, 'real') and hasattr(x, 'imag') and x.imag():
-            x_real = numerical_approx(x.real(), digits=length)
-            x_imag = numerical_approx(x.imag(), digits=length)
+            x_real = numerical_approx(x.real(), digits=digits)
+            x_imag = numerical_approx(x.imag(), digits=digits)
 
             # arrange real and imaginary parts
             v = vector([x_real, x_imag])
             R = v.base_ring()
             return R[['i']](v.list())
 
-        return numerical_approx(x, digits=length)
+        return numerical_approx(x, digits=digits)
 
     # handle vectors
     if is_Vector(x):
         v, v_len = [], []
         # use the point with the most digits since each point will have the same number of decimal places in the vector
         for i in range(len(x)):
-            v_len.append(approx_length(x[i]))
+            v_len.append(get_digits(x[i]))
         # beautify every point of the vector and create a new vector
         for i in range(len(x)):
-            v.append(approx(x[i], length=max(v_len)))
+            v.append(format_number(x[i], digits=max(v_len)))
         return vector(v)
 
     # handle matrices
@@ -83,13 +83,13 @@ def norm(x, n=None):
         # use the point with the most digits since each point will have the same number of decimal places in the matrix
         for i in range(x.nrows()):
             for j in range(x.ncols()):
-                m_len.append(approx_length(x[i][j]))
+                m_len.append(get_digits(x[i][j]))
         # beautify every point of the matrix and create a new matrix
         for i in range(x.nrows()):
             m.append([])
             for j in range(x.ncols()):
-                m[i].append(approx(x[i][j], length=max(m_len)))
+                m[i].append(format_number(x[i][j], digits=max(m_len)))
         return matrix(m)
 
     # handle numbers
-    return approx(x)
+    return format_number(x)
