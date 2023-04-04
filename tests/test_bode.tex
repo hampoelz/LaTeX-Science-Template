@@ -47,6 +47,51 @@ Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
     L &= \var{L, 3}[\henry]
 \end{align*}
 
+\subsection{Simulation}
+
+\begin{sagesilent}
+    simulation_data = LTSpice.plot_data_polar("tests/simulations/export/test_bode.txt")
+    simulation_data_mag, simulation_data_pha = simulation_data["V(out)"]
+
+    simulation_plot_mag = list_plot(
+        simulation_data_mag,
+        color='#148873',
+        scale='semilogx',
+        figsize=[5,2],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\decibel}$"],
+        axes_labels_size=1,
+        gridlines=True,
+        plotjoined=True,
+        frame=True
+    )
+
+    simulation_plot_pha = list_plot(
+        simulation_data_pha,
+        color='#148873',
+        scale='semilogx',
+        figsize=[5,2],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Amplitude in $\\unit{\\degree}$"],
+        axes_labels_size=1,
+        gridlines=True,
+        plotjoined=True,
+        frame=True
+    )
+\end{sagesilent}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \sageplot{simulation_plot_mag}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}{\textwidth}
+        \centering
+        \sageplot{simulation_plot_pha}
+    \end{subfigure}
+    \caption{Amplitude and phase response of the ltspice RL high-pass filter simulation}
+\end{figure}
+
 \subsection{Analysis}
 
 \begin{sagesilent}
