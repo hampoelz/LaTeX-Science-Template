@@ -4,4 +4,8 @@
     load("measures.sage")
     load("bode.sage")
     load("ltspice.sage")
+
+    from matplotlib import rc
+    rc('text', usetex=True)
+    rc('text.latex', preamble='\\usepackage{siunitx}')
 \end{sagesilent}

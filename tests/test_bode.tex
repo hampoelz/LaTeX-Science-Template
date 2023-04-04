@@ -7,7 +7,7 @@
     R = 195.5
 \end{sagesilent}
 
-Informations: $R = \var{R}\Omega$, $f_{g} = \var{f_g}Hz$
+Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
 
 \subsection{Circuit}
 
@@ -44,7 +44,7 @@ Informations: $R = \var{R}\Omega$, $f_{g} = \var{f_g}Hz$
     f_{g} &= \frac{R}{2 \pi L} \\
     \Rightarrow L &= \frac{R}{2 \pi f_{g}} \\
     L &= \frac{\var{R}}{2 \pi \var{f_g}} \\
-    L &= \var{L, 3} H
+    L &= \var{L, 3}[\henry]
 \end{align*}
 
 \subsection{Analysis}
@@ -57,7 +57,7 @@ Informations: $R = \var{R}\Omega$, $f_{g} = \var{f_g}Hz$
         bode.plot_data_freq_mag(),
         scale='semilogx',
         figsize=[5.5,2],
-        axes_labels=['Frequency in $Hz$', 'Phase in $dB$'],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\decibel}$"],
         axes_labels_size=1,
         gridlines=True,
         plotjoined=True,
@@ -68,7 +68,7 @@ Informations: $R = \var{R}\Omega$, $f_{g} = \var{f_g}Hz$
         bode.plot_data_freq_pha(),
         scale='semilogx',
         figsize=[5.5,2],
-        axes_labels=['Frequency in $Hz$', 'Amplitude in $Degree$'],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Amplitude in $\\unit{\\degree}$"],
         axes_labels_size=1,
         gridlines=True,
         plotjoined=True,
@@ -94,7 +94,7 @@ Informations: $R = \var{R}\Omega$, $f_{g} = \var{f_g}Hz$
     bode_plot_step_response = list_plot(
         bode.plot_data_step(),
         figsize=[5.5,2],
-        axes_labels=['Time in $s$', 'Amplitude'],
+        axes_labels=["Time in $\\unit{\\second}$", "Amplitude"],
         axes_labels_size=1,
         gridlines=True,
         plotjoined=True,
@@ -112,7 +112,7 @@ Informations: $R = \var{R}\Omega$, $f_{g} = \var{f_g}Hz$
     bode_plot_group_delay = list_plot(
         bode.plot_data_freq_gd(f_stop=1500),
         figsize=[5.5,2],
-        axes_labels=['Frequency in $Hz$', 'Time in $s$'],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Time in $\\unit{\\second}$"],
         axes_labels_size=1,
         gridlines=True,
         plotjoined=True,

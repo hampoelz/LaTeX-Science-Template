@@ -12,7 +12,7 @@
 %              Do not change!             
 % ========================================
 
-\usepackage{sagetex}
+\usepackage{sagetex,siunitx}
 \usepackage{pdftexcmds}
 \usepackage{circuitikz}
 \usepackage{geometry}
@@ -38,8 +38,10 @@
 }
 
 % usage: \var{<SageMath Variable>}
+%        \var{<SageMath Variable>}[<Unit>]
 %
-\newcommand{\var}[1]{\sage{format_object(#1)}}
+\def\var#1{\@ifnextchar[{\@var{#1}}{\sagestr{format_object(#1)}}}
+\def\@var#1[#2]{\sagestr{format_object(#1)}\,\unit{#2}}
 
 % usage:
 %   \begin{circuitikz}
