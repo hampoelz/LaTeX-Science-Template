@@ -2,7 +2,7 @@
     def compare(num, num_expected, options=None):
         num_result = format_object(num, options, latexify=False)
         if num_result != num_expected:
-            raise SystemExit('Error: format_object() unit test failed at!')
+            raise SystemExit('Error: format_object() unit test failed!')
         return "ok"
 \end{sagesilent}
 
@@ -18,7 +18,7 @@
 % Failing Test: 3.0000 != 3.00
 % \compare[4]{3}{3.00}
 
-\section{Numerical representations \textit{(of calculations)}}
+\section{Printing numbers}
 
 \subsection{Integers}
 \compare{3}{3}
