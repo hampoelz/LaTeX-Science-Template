@@ -49,10 +49,10 @@ jobs:
       run: |
         mktexlsr
         texhash
-        updmap-sys
+        updmap-sys --force
+        fmtutil-sys --all
+        tlmgr recreate-tlpdb
         tlmgr update --self --all
-        tlmgr check all
-        tlmgr clean
     - name: Install full TeXLive scheme
       if: ${{ steps.cache-tl-restore.outputs.cache-hit != 'true' }}
       run: tlmgr install scheme-full
