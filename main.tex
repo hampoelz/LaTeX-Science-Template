@@ -1,0 +1,27 @@
+\documentclass[a4paper]{hitec}
+\settextfraction{0.95}      % reduce left margin
+
+\usepackage{styles/main}
+\usepackage{styles/custom}
+
+\title{}
+\confidential{\textbf{}}
+
+\author{}
+\company{}
+\date{}
+
+\begin{document}
+
+\maketitletoc
+\clearpage
+
+% This line can be safely removed, it is only used
+% to test the correct execution of template functions
+\input{tests/__init__.tex}
+
+\vfill
+
+\IncludeHistoryTimeline
+
+\end{document}
