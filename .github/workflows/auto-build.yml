@@ -31,6 +31,10 @@ jobs:
         wget -O - -- http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | tar xzf - --strip-components=1
         ./install-tl --texdir "$TEXMFDIR" --no-doc-install --no-src-install --no-interaction --scheme scheme-basic
         echo "$TEXMFDIR/bin/x86_64-linux/" >> $GITHUB_PATH
+    - name: Add supplementary TeXLive repository
+      run: |
+        tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib
+        tlmgr pinning add tlcontrib "*"
     - name: Generate TeXLive cache key
       run: |
         echo "TEXCACHEKEY=texlive$(tlmgr --version | sed -n -e 's/^.* version //p')-cache" >> $GITHUB_ENV
@@ -54,10 +58,7 @@ jobs:
       run: tlmgr install scheme-full
     - name: Install supplementary TeXLive packages
       if: ${{ steps.cache-tl-restore.outputs.cache-hit != 'true' }}
-      run: |
-        tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib
-        tlmgr pinning add tlcontrib "*"
-        tlmgr install collection-contrib
+      run: tlmgr install collection-contrib
     - name: Save TeXLive packages to cache
       if: ${{ steps.cache-tl-restore.outputs.cache-hit != 'true' }}
       uses: actions/cache/save@v3
