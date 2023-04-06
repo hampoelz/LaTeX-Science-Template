@@ -4,6 +4,7 @@ if not 'sage' in globals():
 from sage.structure.element import is_Vector, is_Matrix
 from sage.libs.pari.convert_sage import gen_to_sage
 
+
 # beautify and format a number, vector or matrix for the siunitx latex package
 def format_object(x, ndigits=None, latexify=True):
     def float_auto_notation(x):
@@ -11,7 +12,7 @@ def format_object(x, ndigits=None, latexify=True):
         exponent = value.split('e')[1]
         exponent = int(exponent)
         formatter = 'f'
-        if exponent >= 3 or exponent <= -3:
+        if exponent > config_exponent_thresholds_max or exponent < config_exponent_thresholds_min:
             formatter = 'e'
         return formatter
 

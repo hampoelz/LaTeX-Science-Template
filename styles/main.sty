@@ -75,6 +75,52 @@
     BoldFont = *-Bold,              % |
 ]                                   % |
 
+% -------- technical / scientific --------
+\protected\def\loadsciconfig{
+
+    % cultural style for circuits
+    \ctikzset{european}                % european symbols
+    %\ctikzset{american}                % american symbols
+
+    % numbers outside of the threshold range for the exponent are
+    % printed in scientific form when using the \var{} command
+    \SetHelperConfig{exponent_thresholds_min}{-3}
+    \SetHelperConfig{exponent_thresholds_max}{3}
+
+    % options for formatting numbers when using the \var{} command
+    \sisetup{
+        % force the format in which complex numbers are printed (by default, the complex numbers is printed as-given)
+        %complex-mode=cartesian,             % cartesian form
+        %complex-mode=polar,                 % polar form
+        %
+        % set the symbol used for the complex root
+        %output-complex-root=\mathrm{j},     % 'j' symbol
+        %output-complex-root=\mathrm{i},     % 'i' symbol
+        %
+        % force the format in which angles are printed (by default, the angle is printed as-given)
+        %angle-mode=arc,                     % arc form cartesian form (degrees/minutes/seconds)
+        %angle-mode=decimal,                 % decimal form
+        %
+        % set the decimal marker
+        %output-decimal-marker={.},          % point marker
+        %output-decimal-marker={,},          % comma marker
+        %
+        % the number of digits in each group
+        %digit-group-size=3,
+        %
+        % set the separator used between groups of digits
+        %group-separator={\,},               % kern seperator (small space)
+        %group-separator={,},                % comma separator
+        %
+        % set the symbol used for exponent products 
+        %exponent-product=\times,            % '×' symbol (cross)
+        %exponent-product=\cdot,             % '·' symbol (dot)
+        %
+        % "squeeze" the output spacing (prints "2×10^-3" instead of "2 × 10^-3")
+        tight-spacing=true,
+    }
+}
+
 % ========================================
 %        Enable or disable packages       
 % ========================================
@@ -84,7 +130,7 @@
 % ------------ preconfigured -------------
 \usepackage{styles/history}             % auto-generate commit history - included packages: xparse, graphicx, calc, booktabs, ltablex, environ, ifplatform
 \usepackage{styles/commands}            % enable or disable predefined commands
-\usepackage{styles/science}             % technical and scientific styles - included packages: sagetex, circuitikz, pdftexcmds, geometry
+\usepackage{styles/science}             % technical and scientific styles - included packages: sagetex, siunitx, circuitikz, pdftexcmds, geometry
 
 % --------- mathematical packages --------
 \usepackage{amsmath}                    % mathematical symbols

@@ -12,4 +12,12 @@
     # allow latex siunitx macros in plots
     rc('text', usetex=True)
     rc('text.latex', preamble='\\usepackage{siunitx}')
+
+    # set helper program config variables
+    def set_helper_config(key, value):
+        globals()["config_" + key] = value
+        return ""
 \end{sagesilent}
+
+% load the (scientific/technical) configurations made in the file main.sty
+\loadsciconfig
