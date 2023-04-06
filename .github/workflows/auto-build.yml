@@ -19,7 +19,7 @@ jobs:
       image: sagemath/sagemath:latest
       options: --user root
     env:
-      TEXCACHEDIR: /texlive-cache
+      TEXMFDIR: /usr/local/texlive
     steps:
     - name: Install tools and dependencies
       run: |
@@ -31,8 +31,6 @@ jobs:
         wget -O - -- http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | tar xzf - --strip-components=1
         ./install-tl --texdir "$TEXMFDIR" --no-doc-install --no-src-install --no-interaction --scheme scheme-basic
         echo "$TEXMFDIR/bin/x86_64-linux/" >> $GITHUB_PATH
-      env:
-        TEXMFDIR: /usr/local/texlive
     - name: Generate TeXLive cache key
       run: |
         echo "TEXCACHEKEY=texlive$(tlmgr --version | sed -n -e 's/^.* version //p')-cache" >> $GITHUB_ENV
@@ -40,11 +38,17 @@ jobs:
       id: cache-tl-restore
       uses: actions/cache/restore@v3
       with:
-        path: ${{ env.TEXCACHEDIR }}
+        path: ${{ env.TEXMFDIR }}
         key: ${{ env.TEXCACHEKEY }}
     - name: Import restored TeXLive packages
       if: ${{ steps.cache-tl-restore.outputs.cache-hit == 'true' }}
-      run: yes | tlmgr restore --all --backupdir "$TEXCACHEDIR"
+      run: |
+        mktexlsr
+        texhash
+        updmap-sys
+        tlmgr update --self --all
+        tlmgr check all
+        tlmgr clean
     - name: Install full TeXLive scheme
       if: ${{ steps.cache-tl-restore.outputs.cache-hit != 'true' }}
       run: tlmgr install scheme-full
@@ -54,16 +58,11 @@ jobs:
         tlmgr repository add https://mirror.ctan.org/systems/texlive/tlcontrib tlcontrib
         tlmgr pinning add tlcontrib "*"
         tlmgr install collection-contrib
-    - name: Export installed TeXLive packages
-      if: ${{ steps.cache-tl-restore.outputs.cache-hit != 'true' }}
-      run: |
-        mkdir -p "$TEXCACHEDIR"
-        tlmgr backup --all --backupdir "$TEXCACHEDIR"
     - name: Save TeXLive packages to cache
       if: ${{ steps.cache-tl-restore.outputs.cache-hit != 'true' }}
       uses: actions/cache/save@v3
       with:
-        path: ${{ env.TEXCACHEDIR }}
+        path: ${{ env.TEXMFDIR }}
         key: ${{ env.TEXCACHEKEY }}
     - name: Checkout repository
       uses: actions/checkout@v3
