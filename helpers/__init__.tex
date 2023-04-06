@@ -1,0 +1,15 @@
+\begin{sagesilent}
+    from os import listdir
+    from matplotlib import rc
+
+    attach_path = "../helpers/"
+
+    # load helper programs
+    load_attach_path(attach_path)
+    for f in listdir(attach_path):
+        if f.endswith('.sage'): load(f)
+
+    # allow latex siunitx macros in plots
+    rc('text', usetex=True)
+    rc('text.latex', preamble='\\usepackage{siunitx}')
+\end{sagesilent}

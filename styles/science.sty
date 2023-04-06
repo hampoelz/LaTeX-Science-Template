@@ -11,16 +11,20 @@
 % ========================================
 %              Do not change!             
 % ========================================
+% Make configurations in the main.sty file
 
-\usepackage{sagetex,siunitx}
+\usepackage{sagetex}
+\usepackage{siunitx}
+\usepackage[siunitx]{circuitikz}
 \usepackage{pdftexcmds}
-\usepackage{circuitikz}
 \usepackage{geometry}
 
 \usetikzlibrary{arrows}
-\ctikzset{european}
 
 \geometry{top=20mm,bottom=20mm}
+
+% load helper programs and configurations
+\AtBeginDocument{\input{helpers/__init__.tex}}
 
 % usage: \executeiffilenewer{<File1>}{<File2>}{<Shell Command>}
 %
@@ -64,3 +68,7 @@
     \draw[-Triangle, blue] (#1-Vfrom) -- (#1-Vto);
     \node[anchor=\ctikzgetanchor{#1}{Vlab}, blue] at (#1-Vlab) {#2};
 }
+
+% usage: \SetHelperConfig{<key>}{<value>}
+%
+\newcommand{\SetHelperConfig}[2]{\sagestr{set_helper_config("#1", #2)}}
