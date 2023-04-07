@@ -96,10 +96,10 @@ Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
 
 \begin{sagesilent}
     s = var('s')
-    bode = Bode((s*L)/(R+s*L), 1, 10000, 1)
+    rl_highpass = TransferFunction((s*L)/(R+s*L), 1, 10000, 1)
 
     bode_plot_mag = list_plot(
-        bode.plot_data_freq_mag(),
+        rl_highpass.plot_data_freq_mag_bode(),
         scale='semilogx',
         figsize=[5.5,2],
         axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\decibel}$"],
@@ -110,7 +110,7 @@ Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
     )
 
     bode_plot_pha = list_plot(
-        bode.plot_data_freq_pha(),
+        rl_highpass.plot_data_freq_pha_bode(),
         scale='semilogx',
         figsize=[5.5,2],
         axes_labels=["Frequency in $\\unit{\\hertz}$", "Amplitude in $\\unit{\\degree}$"],
@@ -136,8 +136,8 @@ Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
 \end{figure}
 
 \begin{sagesilent}
-    bode_plot_step_response = list_plot(
-        bode.plot_data_step(),
+    step_response_plot = list_plot(
+        rl_highpass.plot_data_step(),
         figsize=[5.5,2],
         axes_labels=["Time in $\\unit{\\second}$", "Amplitude"],
         axes_labels_size=1,
@@ -149,13 +149,13 @@ Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
 
 \begin{figure}[H]
     \centering
-    \sageplot{bode_plot_step_response}
+    \sageplot{step_response_plot}
     \caption{Step response of the RL high-pass}
 \end{figure}
 
 \begin{sagesilent}
-    bode_plot_group_delay = list_plot(
-        bode.plot_data_freq_gd(f_stop=1500),
+    group_delay_plot = list_plot(
+        rl_highpass.plot_data_freq_gd(f_stop=1500),
         figsize=[5.5,2],
         axes_labels=["Frequency in $\\unit{\\hertz}$", "Time in $\\unit{\\second}$"],
         axes_labels_size=1,
@@ -167,6 +167,6 @@ Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
 
 \begin{figure}[H]
     \centering
-    \sageplot{bode_plot_group_delay}
+    \sageplot{group_delay_plot}
     \caption{Group delay of the RL high-pass}
 \end{figure}
