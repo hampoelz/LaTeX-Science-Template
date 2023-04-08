@@ -78,4 +78,7 @@ def format_object(x, ndigits=None, latexify=True):
         if not latexify: return str(m)
         return "\\left(\\begin{array}{" + 'r'*len(cols) + "}" + m_latex + "\\end{array}\\right)"
     
-    return format(x)
+    if x in ZZ or x in RR or x in QQ or x in CC:
+        return format(x)
+    
+    return latex(x)
