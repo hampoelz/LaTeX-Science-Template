@@ -58,7 +58,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         color='#148873',
         scale='semilogx',
         figsize=[5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\decibel}$"],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Magnitude in $\\unit{\\decibel}$"],
         axes_labels_size=1,
         gridlines=True,
         plotjoined=True,
@@ -70,7 +70,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         color='#148873',
         scale='semilogx',
         figsize=[5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Amplitude in $\\unit{\\degree}$"],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\degree}$"],
         axes_labels_size=1,
         gridlines=True,
         plotjoined=True,
@@ -89,7 +89,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         \centering
         \sageplot{simulation_plot_pha}
     \end{subfigure}
-    \caption{Amplitude and phase response of the ltspice RL high-pass filter simulation}
+    \caption{Magnitude and phase response of the ltspice RL high-pass filter simulation}
 \end{figure}
 
 \subsection{Analysis}
@@ -102,7 +102,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         rl_highpass.plot_data_freq_mag_bode(),
         scale='semilogx',
         figsize=[5.5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\decibel}$"],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Magnitude in $\\unit{\\decibel}$"],
         axes_labels_size=1,
         gridlines=True,
         plotjoined=True,
@@ -113,7 +113,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         rl_highpass.plot_data_freq_pha_bode(),
         scale='semilogx',
         figsize=[5.5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Amplitude in $\\unit{\\degree}$"],
+        axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\degree}$"],
         axes_labels_size=1,
         gridlines=True,
         plotjoined=True,
@@ -132,7 +132,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         \centering
         \sageplot{bode_plot_pha}
     \end{subfigure}
-    \caption{Amplitude and phase response of the RL high-pass filter}
+    \caption{Magnitude and phase response of the RL high-pass filter}
 \end{figure}
 
 \begin{sagesilent}

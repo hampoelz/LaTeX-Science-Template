@@ -124,11 +124,11 @@ class LTSpice:
         def export(wave_index):
             data_complex = np.array(re[wave_index]) + \
                 1j * np.array(im[wave_index])
-            data_amp = np.abs(data_complex)
+            data_mag = np.abs(data_complex)
             data_pha = np.angle(data_complex, deg=True)
-            plot_data_amp = list(zip(x, data_amp))
+            plot_data_mag = list(zip(x, data_mag))
             plot_data_pha = list(zip(x, data_pha))
-            return plot_data_amp, plot_data_pha
+            return plot_data_mag, plot_data_pha
 
         plot_data = dict()
         for i in range(len(waveforms)):
