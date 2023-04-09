@@ -7,7 +7,7 @@
     R = 195.5
 \end{sagesilent}
 
-Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
+Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
 
 \subsection{Circuit}
 
@@ -15,10 +15,10 @@ Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
     \centering
     \begin{circuitikz}
         \coordinate (in+) at (0,0);
-        \coordinate (in-) at (0,-2);
+        \coordinate (in-) at (0,-2);+
 
         \draw
-        (in+) to[R=$R$,o-] ++(4,0) coordinate (aux1)
+        (in+) to[R, l^=$R$, a_=$\SIvar{R}{\ohm}$,o-] ++(4,0) coordinate (aux1)
         to[short,-o] ++(2,0) coordinate (out+)
 
         (aux1) to[cute inductor=$L$,*-*] (aux1 |- in-)
@@ -44,7 +44,7 @@ Informations: $R = \var{R}[\ohm]$, $f_{g} = \var{f_g}[\hertz]$
     f_{g} &= \frac{R}{2 \pi L} \\
     \Rightarrow L &= \frac{R}{2 \pi f_{g}} \\
     L &= \frac{\var{R}}{2 \pi \var{f_g}} \\
-    L &= \var{L, 3}[\henry]
+    L &= \SIvar{L, 3}{\henry}
 \end{align*}
 
 \subsection{Simulation}

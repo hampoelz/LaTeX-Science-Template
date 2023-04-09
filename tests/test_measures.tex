@@ -12,9 +12,9 @@
     V_BE = 0.66
 \end{sagesilent}
 
-Informations: $V_{in0} = \var{V_in0}[\volt]$, $I_{out_{max}} = \var{I_out_max}[\ampere]$, $I_{ZD} = \var{I_ZD}[\ampere]$
+Informations: $V_{in0} = \SIvar{V_in0}{\volt}$, $I_{out_{max}} = \SIvar{I_out_max}{\ampere}$, $I_{ZD} = \SIvar{I_ZD}{\ampere}$
 
-Datasheet: $V_{ZD} = \var{V_ZD}[\volt]$, $V_{ZD_{max}} = \var{V_ZD_max}[\volt]$, $V_{BE} = \var{V_BE}[\volt]$
+Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\volt}$, $V_{BE} = \SIvar{V_BE}{\volt}$
 
 \subsection{Circuit}
 
@@ -65,13 +65,13 @@ Datasheet: $V_{ZD} = \var{V_ZD}[\volt]$, $V_{ZD_{max}} = \var{V_ZD_max}[\volt]$,
 \begin{align*}
     R_{V} &= \frac{V_{in0} - V_{ZD}}{I_{ZD}} \\
     R_{V} &= \frac{\var{V_in0} - \var{V_ZD}}{\var{I_ZD}} \\
-    R_{V} &= \var{R_V}[\ohm]
+    R_{V} &= \SIvar{R_V}{\ohm}
 \end{align*}
 
 \begin{align*}
     R_{L_{min}} &= \frac{V_{ZD_{max}} - V_{BE}}{I_{out_{max}}} \\
     R_{L_{min}} &= \frac{\var{V_ZD_max} - \var{V_BE}}{\var{I_out_max}} \\
-    R_{L_{min}} &= \var{R_L_min}[\ohm]
+    R_{L_{min}} &= \SIvar{R_L_min}{\ohm}
 \end{align*}
 
 \subsection{Simulation}
