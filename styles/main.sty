@@ -78,10 +78,6 @@
 % -------- technical / scientific --------
 \protected\def\loadsciconfig{
 
-    % cultural style for circuits
-    \ctikzset{european}                % european symbols
-    %\ctikzset{american}                % american symbols
-
     % numbers outside of the threshold range for the exponent are
     % printed in scientific form when using the \var{} command
     \SetHelperConfig{exponent_thresholds_min}{-3}
@@ -130,7 +126,7 @@
 % ------------ preconfigured -------------
 \usepackage{styles/history}             % auto-generate commit history - included packages: xparse, graphicx, calc, booktabs, ltablex, environ, ifplatform
 \usepackage{styles/commands}            % enable or disable predefined commands
-\usepackage{styles/science}             % technical and scientific styles - included packages: sagetex, siunitx, circuitikz, pdftexcmds, geometry
+\usepackage{styles/science}             % technical and scientific styles - included packages: sagetex, siunitx, pdftexcmds, geometry
 
 % --------- mathematical packages --------
 \usepackage{amsmath}                    % mathematical symbols
@@ -191,3 +187,6 @@
     %::::::::::::::::::::::::::::::
 
 % \usepackage{markdown}\def\markdownOptionOutputDir{\auxDir}          % markdown support
+
+% ---------- technical packages ----------
+\usepackage[siunitx]{circuitikz}        % typeset electrical networks
