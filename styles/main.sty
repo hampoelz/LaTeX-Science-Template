@@ -31,6 +31,8 @@
 %   https://github.com/hampoelz/LaTeX-Template/wiki/02-Usage#change-document-language
 %   https://github.com/hampoelz/LaTeX-Template/wiki/02-Usage#git-history
 %   https://github.com/hampoelz/LaTeX-Template/wiki/02-Usage#custom-document-font
+%   https://github.com/hampoelz/LaTeX-Science-Template/wiki/02-Usage#printformat-numbers-objects-and-variables
+%   https://github.com/hampoelz/LaTeX-Science-Template/wiki/02-Usage#print-numbers
 
 % --------------- language ---------------
 \usepackage[english]{babel}             % english language
@@ -77,10 +79,6 @@
 
 % -------- technical / scientific --------
 \protected\def\loadsciconfig{
-
-    % cultural style for circuits
-    \ctikzset{european}                % european symbols
-    %\ctikzset{american}                % american symbols
 
     % numbers outside of the threshold range for the exponent are
     % printed in scientific form when using the \var{} command
@@ -130,7 +128,7 @@
 % ------------ preconfigured -------------
 \usepackage{styles/history}             % auto-generate commit history - included packages: xparse, graphicx, calc, booktabs, ltablex, environ, ifplatform
 \usepackage{styles/commands}            % enable or disable predefined commands
-\usepackage{styles/science}             % technical and scientific styles - included packages: sagetex, siunitx, circuitikz, pdftexcmds, geometry
+\usepackage{styles/science}             % technical and scientific styles - included packages: sagetex, siunitx, pdftexcmds, geometry
 
 % --------- mathematical packages --------
 \usepackage{amsmath}                    % mathematical symbols
@@ -191,3 +189,9 @@
     %::::::::::::::::::::::::::::::
 
 % \usepackage{markdown}\def\markdownOptionOutputDir{\auxDir}          % markdown support
+
+% --- technical / scientific packages ----
+\usepackage{tikz}                       % create graphics
+\usepackage[siunitx]{circuitikz}        % draw electrical networks using tikz
+%\usepackage{chemfig}                    % draw molecules using tikz
+%\usepackage{chemmacros}                 % macros for chemistry documents

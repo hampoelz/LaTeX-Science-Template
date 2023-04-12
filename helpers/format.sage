@@ -1,9 +1,18 @@
+#
+# Copyright (c) 2023 Rene Hampölz
+#
+# Use of this source code is governed by an MIT-style
+# license that can be found in the LICENSE file under
+# https://github.com/hampoelz/LaTeX-Template.
+#
+
+# usage: https://github.com/hampoelz/LaTeX-Science-Template/wiki/02-Usage#printformat-numbers-objects-and-variables
+
 if not 'sage' in globals():
     from sage.all import *
 
 from sage.structure.element import is_Vector, is_Matrix
 from sage.libs.pari.convert_sage import gen_to_sage
-
 
 # beautify and format a number, vector or matrix for the siunitx latex package
 def format_object(x, ndigits=None, latexify=True):
@@ -78,4 +87,7 @@ def format_object(x, ndigits=None, latexify=True):
         if not latexify: return str(m)
         return "\\left(\\begin{array}{" + 'r'*len(cols) + "}" + m_latex + "\\end{array}\\right)"
     
-    return format(x)
+    if x in ZZ or x in RR or x in QQ or x in CC:
+        return format(x)
+    
+    return latex(x)

@@ -15,11 +15,8 @@
 
 \usepackage{sagetex}
 \usepackage{siunitx}
-\usepackage[siunitx]{circuitikz}
 \usepackage{pdftexcmds}
 \usepackage{geometry}
-
-\usetikzlibrary{arrows}
 
 \geometry{top=20mm,bottom=20mm}
 
@@ -42,10 +39,14 @@
 }
 
 % usage: \var{<SageMath Variable>}
-%        \var{<SageMath Variable>}[<Unit>]
+%        \SIvar{<SageMath Variable>}{<Unit>}
 %
-\def\var#1{\@ifnextchar[{\@var{#1}}{\sagestr{format_object(#1)}}}
-\def\@var#1[#2]{\sagestr{format_object(#1)}\,\unit{#2}}
+\newcommand{\var}[1]{\sagestr{format_object(#1)}}
+\newcommand{\SIvar}[2]{\var{#1}\,\unit{#2}}
+
+% usage: \SetHelperConfig{<key>}{<value>}
+%
+\newcommand{\SetHelperConfig}[2]{\sagestr{set_helper_config("#1", #2)}}
 
 % usage:
 %   \begin{circuitikz}
@@ -68,7 +69,3 @@
     \draw[-Triangle, blue] (#1-Vfrom) -- (#1-Vto);
     \node[anchor=\ctikzgetanchor{#1}{Vlab}, blue] at (#1-Vlab) {#2};
 }
-
-% usage: \SetHelperConfig{<key>}{<value>}
-%
-\newcommand{\SetHelperConfig}[2]{\sagestr{set_helper_config("#1", #2)}}
