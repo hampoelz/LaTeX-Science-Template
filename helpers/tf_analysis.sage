@@ -1,9 +1,18 @@
+#
+# Copyright (c) 2023 Rene Hampölz
+#
+# Use of this source code is governed by an MIT-style
+# license that can be found in the LICENSE file under
+# https://github.com/hampoelz/LaTeX-Template.
+#
+
+# usage: https://github.com/hampoelz/LaTeX-Science-Template/wiki/02-Usage#transfer-function-analysis
+
 if not 'sage' in globals():
     from sage.all import *
 
 import numpy as np
 from scipy import signal
-
 
 class TransferFunction:
     def __init__(self, expr, freq_start, freq_stop, freq_steps):
