@@ -1,22 +1,23 @@
 \begin{sagesilent}
-    def compare(num, num_expected, options=None):
-        num_result = format_object(num, options, latexify=False)
+    def compare(num, num_expected, ndigits=None):
+        num_result = format_object(num, ndigits=ndigits, latexify=False)
         if num_result != num_expected:
             raise SystemExit('Error: format_object() unit test failed!')
         return "ok"
 \end{sagesilent}
 
 \newcommand{\compare}[3][None]{
-    \def\expected{#3}
     \begin{flushleft}
-        Default representation with \texttt{{\textbackslash}sage}: \quad $\sage{#2}$\\
-        Representation with helper~~\texttt{{\textbackslash}var }: \quad $\var{#2, #1}$
+        \texttt{{\textbackslash}sage}: \quad $\sage{#2}$\\
+        \texttt{{\textbackslash}var }: \quad $\var{#2, #1}$
     \end{flushleft}
-    Test Passed: \sagestr{compare(#2, "#3", #1)}
+    Test Passed: \sagestr{compare(#2, "#3", ndigits=#1)}
 }
 
-% Failing Test: 3.0000 != 3.00
-% \compare[4]{3}{3.00}
+% usage: \compare[<ndigits>]{<Sage Object>}{<Expected Output>}
+% examples:
+%    \compare[4]{3}{3.0000}    % Passing Test ("3.0000" == "3.0000")
+%    \compare[4]{3}{3.00}      % Failing Test ("3.0000" != "3.00")
 
 \section{Printing numbers}
 

@@ -79,7 +79,7 @@ Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\vol
 \begin{figure}[H]
     \centering
     \includesvg[width=0.8\textwidth]{tests/simulations/export/test_measures.svg}
-    \caption{Output characteristic \textbf{$V_{out} = f(R_L)$} of the simulation \textit{(embedded as svg)}}
+    \caption{Output characteristic \textbf{$V_{out} = f(R_L)$} of the simulation. \textit{(embedded as svg)}}
 \end{figure}
 
 \begin{sagesilent}
@@ -89,7 +89,7 @@ Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\vol
     simulation_plot = list_plot(
         simulation_data_ohm_volt,
         color='#148873',
-        figsize=[5,2],
+        figsize=[5.5,2],
         axes_labels=["$R_L$ in $\\unit{\\ohm}$", "$V_{out}$ in $\\unit{\\volt}$"],
         axes_labels_size=1,
         gridlines=True,
@@ -101,13 +101,13 @@ Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\vol
 \begin{figure}[H]
     \centering
     \sageplot{simulation_plot}
-    \caption{Output characteristic \textbf{$V_{out} = f(R_L)$} of the simulation \textit{(imported from ltspice)}}
+    \caption{Output characteristic \textbf{$V_{out} = f(R_L)$} of the simulation. \textit{(imported from ltspice)}}
 \end{figure}
 
 \subsection{Analysis}
 
 \begin{sagesilent}
-    measures = Measures(
+    measured_data = Measures(
         [
             "$R_L$ in $\\unit{\\ohm}$",
             "$V_{out}$ in $\\unit{\\volt}$", 
@@ -124,7 +124,7 @@ Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\vol
             [250, 3.95, 15.6],
             [300, 3.98, 13.2],
             [400, 4.05, 10.0],
-            [500, 4.10, 8.2],
+            [500, 4.10, 8.20],
             [600, 4.17, 6.95],
             [700, 4.22, 6.00],
             [800, 4.23, 5.30],
@@ -142,33 +142,33 @@ Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\vol
 \begin{table}
     \centering
     \renewcommand{\arraystretch}{1.2}
-    \sage{measures.table}
+    \sage{measured_data.table}
 \end{table}
 
 \subsubsection{Plotting}
 
 \begin{sagesilent}
-    f = list_plot(
-        measures.plot_data(index_RL, index_Ua),
+    measured_data_plot = list_plot(
+        measured_data.plot_data(index_RL, index_Ua),
         color='purple',
-        figsize=[5,2],
+        figsize=[5.5,2],
         axes_labels=["$R_L$ in $\\unit{\\ohm}$", "$V_{out}$ in $\\unit{\\volt}$"],
         axes_labels_size=1
     )
 
-    f += line(
-        measures.g1d_smooth(index_RL, index_Ua, sigma=0.75, connect=True),
+    measured_data_plot += line(
+        measured_data.g1d_smooth(index_RL, index_Ua, sigma=0.75, connect=True),
         linestyle="--",
         color='blue'
     )
 
-    f += line(
+    measured_data_plot += line(
         [(100, 4), (100, 3.9)],
         linestyle=":",
         color="red"
     )
 
-    f += line(
+    measured_data_plot += line(
         [(200, 4), (200, 3.9)],
         linestyle=":",
         color="red"
@@ -177,6 +177,6 @@ Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\vol
 
 \begin{figure}[H]
     \centering
-    \sageplot{f}
+    \sageplot{measured_data_plot}
     \caption{Output characteristic \textbf{$V_{out} = f(R_L)$} with measured data}
 \end{figure}
