@@ -88,9 +88,9 @@ Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\vol
 
     simulation_plot = list_plot(
         simulation_data_ohm_volt,
+        axes_labels=["$R_L$ in $\Omega$", "$V_{out}$ in V"],
         color='#148873',
         figsize=[5.5,2],
-        axes_labels=["$R_L$ in $\Omega$", "$V_{out}$ in V"],
         plotjoined=True,
         frame=True
     )
@@ -148,9 +148,9 @@ Datasheet: $V_{ZD} = \SIvar{V_ZD}{\volt}$, $V_{ZD_{max}} = \SIvar{V_ZD_max}{\vol
 \begin{sagesilent}
     measured_data_plot = list_plot(
         measured_data.plot_data(index_RL, index_Ua),
+        axes_labels=["$R_L$ in $\Omega$", "$V_{out}$ in V"],
         color='purple',
-        figsize=[5.5,2],
-        axes_labels=["$R_L$ in $\Omega$", "$V_{out}$ in V"]
+        figsize=[5.5,2]
     )
 
     measured_data_plot += line(
