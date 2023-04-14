@@ -58,9 +58,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         color='#148873',
         scale='semilogx',
         figsize=[5.5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Magnitude in $\\unit{\\decibel}$"],
-        axes_labels_size=1,
-        gridlines=True,
+        axes_labels=["Frequency in Hz", "Magnitude in dB"],
         plotjoined=True,
         frame=True
     )
@@ -70,9 +68,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         color='#148873',
         scale='semilogx',
         figsize=[5.5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\degree}$"],
-        axes_labels_size=1,
-        gridlines=True,
+        axes_labels=["Frequency in Hz", "Phase in $\degree$"],
         plotjoined=True,
         frame=True
     )
@@ -102,9 +98,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         highpass_filter.plot_data_freq_mag_bode(),
         scale='semilogx',
         figsize=[5.5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Magnitude in $\\unit{\\decibel}$"],
-        axes_labels_size=1,
-        gridlines=True,
+        axes_labels=["Frequency in Hz", "Magnitude in dB"],
         plotjoined=True,
         frame=True
     )
@@ -113,9 +107,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
         highpass_filter.plot_data_freq_pha_bode(),
         scale='semilogx',
         figsize=[5.5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Phase in $\\unit{\\degree}$"],
-        axes_labels_size=1,
-        gridlines=True,
+        axes_labels=["Frequency in Hz", "Phase in $\degree$"],
         plotjoined=True,
         frame=True
     )
@@ -139,9 +131,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
     step_response_plot = list_plot(
         highpass_filter.plot_data_step(),
         figsize=[5.5,2],
-        axes_labels=["Time in $\\unit{\\second}$", "Amplitude"],
-        axes_labels_size=1,
-        gridlines=True,
+        axes_labels=["Time in s", "Amplitude"],
         plotjoined=True,
         frame=True
     )
@@ -157,9 +147,7 @@ Informations: $R = \SIvar{R}{\ohm}$, $f_{g} = \SIvar{f_g}{\hertz}$
     group_delay_plot = list_plot(
         highpass_filter.plot_data_freq_gd(f_stop=1500),
         figsize=[5.5,2],
-        axes_labels=["Frequency in $\\unit{\\hertz}$", "Time in $\\unit{\\second}$"],
-        axes_labels_size=1,
-        gridlines=True,
+        axes_labels=["Frequency in Hz", "Time in s"],
         plotjoined=True,
         frame=True
     )
