@@ -83,4 +83,4 @@ jobs:
       run: |
         gh pr reopen $BRANCH_UPDATE || gh pr create --base main --title "chore: :twisted_rightwards_arrows: Merge changes from template" --body "Merged from https://github.com/${{ needs.get_parent.outputs.repo }}/tree/${{ needs.get_parent.outputs.branch }}"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.UPDATE_TOKEN == '' && secrets.GITHUB_TOKEN || secrets.UPDATE_TOKEN }}
